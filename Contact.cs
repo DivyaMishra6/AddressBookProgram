@@ -8,6 +8,7 @@ namespace AddressBookProblem
 {
     public class Contact
     {
+        //Create contact
         public string firstName;
         public string lastName;
         public string mobileNumber;
