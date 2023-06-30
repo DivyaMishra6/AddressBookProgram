@@ -17,5 +17,11 @@ namespace AddressBookProblem
         public string state;
         public string zip;
         public string email;
+
+        public override string ToString()
+        {
+            return $"First Name: {firstName}," +  $" Last Name: {lastName}, Mobile Number: {mobileNumber}, Address: {address}, City: {city}, State: {state}, Zip: {zip}, Email: {email}";
+        }
+
     }
 }
