@@ -39,8 +39,6 @@
             Console.WriteLine("Enter the first name of the person to update:");
             string name = Console.ReadLine();
 
-
-
             Contact contactToUpdate = con.FirstOrDefault(c => c.firstName.Equals(name, StringComparison.OrdinalIgnoreCase));
 
             if (contactToUpdate == null)
@@ -145,6 +143,23 @@
             Console.WriteLine("Contact deleted successfully!");
         }
 
+        public void AddMultipleContact()
+        {
+            Console.WriteLine("Enter the number of Contacts to Add : ");
+            int n = Convert.ToInt32(Console.ReadLine());
+            if (n > 0)
+            {
+                for (int i = 0; i < n; i++)
+                {
+                    AddDetails();
+                }
+            }
+            else
+            {
+                Console.WriteLine("Enter the correct Number");
+            }
+        }
+
         // FOR DISPLAY
         public void DisplayContact()
         {
@@ -187,6 +202,7 @@
                                 case 1:
                                     {
                                         person.EditContact();
+                                        person.DisplayContact();
                                         flag = false;
                                         break;
 
@@ -195,6 +211,15 @@
                                     {
 
                                         person.DeleteContact();
+                                        person.DisplayContact();
+                                        flag = false;
+                                        break;
+
+                                    }
+                                case 3:
+                                    {
+
+                                        person.AddMultipleContact();
                                         person.DisplayContact();
                                         flag = false;
                                         break;
