@@ -143,22 +143,6 @@
             Console.WriteLine("Contact deleted successfully!");
         }
 
-        public void AddMultipleContact()
-        {
-            Console.WriteLine("Enter the number of Contacts to Add : ");
-            int n = Convert.ToInt32(Console.ReadLine());
-            if (n > 0)
-            {
-                for (int i = 0; i < n; i++)
-                {
-                    AddDetails();
-                }
-            }
-            else
-            {
-                Console.WriteLine("Enter the correct Number");
-            }
-        }
 
         // FOR DISPLAY
         public void DisplayContact()
@@ -178,65 +162,64 @@
             Console.WriteLine(" ");
             AdressBookMainClass person = new AdressBookMainClass();
             bool flag = true;
+            int n;
             while (flag == true)
             {
                 Console.WriteLine("Do you want to add new contact YES(1) or NO(0)");
                 int option = int.Parse(Console.ReadLine());
-
-                switch (option)
+                Console.WriteLine("No. of contact you wana add or otherwise press 1:");
+                n = int.Parse(Console.ReadLine());
+                for (int i = 1; i <= n; i++)
                 {
-                    case 1:
-                        {
-                            Console.WriteLine("Please add new contact details: ");
-                            person.AddDetails();
-                            person.DisplayContact();
-                            break;
-                        }
-                    case 0:
-                        {
-                            Console.WriteLine("Do you Want to Edit(1) or Delete(2) your Contact :");
 
-                            int option1 = int.Parse(Console.ReadLine());
-                            switch (option1)
+                    switch (option)
+                    {
+                        case 1:
                             {
-                                case 1:
-                                    {
-                                        person.EditContact();
-                                        person.DisplayContact();
-                                        flag = false;
-                                        break;
-
-                                    }
-                                case 2:
-                                    {
-
-                                        person.DeleteContact();
-                                        person.DisplayContact();
-                                        flag = false;
-                                        break;
-
-                                    }
-                                case 3:
-                                    {
-
-                                        person.AddMultipleContact();
-                                        person.DisplayContact();
-                                        flag = false;
-                                        break;
-
-                                    }
-
-                                default:
-                                    {
-                                        Console.WriteLine("press any key for exit:");
-                                        flag = false;
-                                        break;
-
-                                    }
-
+                                Console.WriteLine("Please add new contact details: ");
+                                person.AddDetails();
+                                person.DisplayContact();
+                                break;
                             }
-                            break;
-                        }
+                        case 0:
+                            {
+                                Console.WriteLine("Do you Want to Edit(1) or Delete(2) your Contact :");
+
+                                int option1 = int.Parse(Console.ReadLine());
+                                switch (option1)
+                                {
+                                    case 1:
+                                        {
+                                            person.EditContact();
+                                            person.DisplayContact();
+                                            flag = false;
+                                            break;
+
+                                        }
+                                    case 2:
+                                        {
+
+                                            person.DeleteContact();
+                                            person.DisplayContact();
+                                            flag = false;
+                                            break;
+
+                                        }
+
+
+                                    default:
+                                        {
+                                            Console.WriteLine("press any key for exit:");
+                                            flag = false;
+                                            break;
+
+                                        }
+
+                                }
+                                break;
+                            }
+                    }
+
 
                 }
             }
