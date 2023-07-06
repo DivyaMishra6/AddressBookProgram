@@ -4,7 +4,7 @@
     {
         List<Contact> con = new List<Contact>();
         Contact obj = new Contact();
-        Dictionary<string, List<Contact>> AddressBookDic = new Dictionary<string, List<Contact>>();
+        
         public void AddDetails()
         {
             List<Contact> con = new List<Contact>();
@@ -153,19 +153,12 @@
         public void DisplayContact()
         {
 
-            foreach (var key in AddressBookDic.Keys)
+            Console.WriteLine("The Details you stored in Address Book:");
+
+            foreach (var change in con)
             {
-                Console.WriteLine($"key is {key}");
 
-                Console.WriteLine("The Details you stored in Address Book:");
-
-                List<Contact> con = AddressBookDic[key];
-                foreach (var change in con)
-                {
-
-                    Console.WriteLine(change.ToString());
-                }
-
+                Console.WriteLine(change.ToString());
             }
 
         }
