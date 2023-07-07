@@ -60,6 +60,24 @@
             }
         }
 
+        // Sort the contactList by City
+        public void SortByCity()
+        {
+            con.Sort((x, y) => string.Compare(x.city, y.city));
+        }
+
+        // Sort the contactList by State
+        public void SortByState()
+        {
+            con.Sort((x, y) => string.Compare(x.state, y.state));
+        }
+
+        // Sort the contactList by Zip
+        public void SortByZip()
+        {
+            con.Sort((x, y) => string.Compare(x.zip, y.zip));
+        }
+
         // Main method to execute the program
         public static void Main(string[] args)
         {
@@ -73,7 +91,8 @@
                 Console.WriteLine("Do you want to add new contact YES(1) or NO(0)");
                 int option = int.Parse(Console.ReadLine());
 
-                switch (option)
+                
+                    switch (option)
                 {
                     case 1:
                         {
@@ -85,19 +104,53 @@
                         }
                     case 0:
                         {
-                            // Display all contacts and exit the program
-                            addressBook.DisplayContact();
-                            Console.WriteLine("Press any key to exit.");
-                            Console.ReadKey();
-                            flag = false;
+                            Console.WriteLine("Do you want to sort by city(1),state(2)and zip(3) or NO(0)");
+                            int option1 = int.Parse(Console.ReadLine());
+
+                            switch (option1)
+                            {
+                                case 0:
+
+                                    {
+
+                                        // Display all contacts and exit the program
+                                        addressBook.DisplayContact();
+                                        Console.WriteLine("Press any key to exit.");
+                                        Console.ReadKey();
+                                        flag = false;
+
+                                        break;
+                                    }
+
+                                case 1:
+                                    {
+                                        // Sort by City
+                                        addressBook.SortByCity();
+                                        addressBook.DisplayContact();
+                                        break;
+                                    }
+                                case 2:
+                                    {
+                                        // Sort by State
+                                        addressBook.SortByState();
+                                        addressBook.DisplayContact();
+                                        break;
+                                    }
+                                case 3:
+                                    {
+                                        // Sort by Zip
+                                        addressBook.SortByZip();
+                                        addressBook.DisplayContact();
+                                        break;
+                                    }
+                            }
                             break;
                         }
-                    default:
-                        Console.WriteLine("Invalid option selected");
-                        break;
+
+
                 }
+
             }
         }
-
     }
 }
