@@ -46,22 +46,24 @@
 
         public void SearchPersonInCityOrState()
         {
-            Console.WriteLine("Enter City or State name to search Person: ");
             string cityOrStateName = Console.ReadLine();
 
-            var result = AddressBookDic.Values.SelectMany(x => x.Where(y => y.city.ToLower().Equals(cityOrStateName) || y.state.ToLower().Equals(cityOrStateName)));
+            var cityResult = AddressBookDic.Values.SelectMany(x => x.Where(x => x.city.ToLower().Equals(cityOrStateName)));
+            var stateResult = AddressBookDic.Values.SelectMany(x => x.Where(x => x.state.ToLower().Equals(cityOrStateName)));
 
-            if (result.Count() == 0)
+            int cityCount = cityResult.Count();
+            int stateCount = stateResult.Count();
+
+            if (cityCount == 0 && stateCount == 0)
             {
                 Console.WriteLine($"No Person found in {cityOrStateName}");
             }
             else
             {
                 Console.WriteLine($"Persons found in {cityOrStateName}");
-                foreach (var contact in result)
-                {
-                    Console.WriteLine(contact.ToString());
-                }
+                Console.WriteLine($"Count by City: {cityCount}");
+                Console.WriteLine($"Count by State: {stateCount}");
+
             }
         }
 
@@ -99,6 +101,7 @@
                 {
                     case 1:
                         {
+                            //For Add Details
                             Console.WriteLine("Please add new contact details: ");
                             person.AddDetails();
                             person.DisplayContact();
@@ -108,6 +111,7 @@
                         }
                     case 0:
                         {
+                            //For Search or Exit
                             Console.WriteLine("Do you want to search Person in a City or State YES(1) or NO(0)");
                             int option1 = int.Parse(Console.ReadLine());
 
@@ -115,10 +119,25 @@
                             {
                                 case 1:
                                     {
-                                        Console.WriteLine("Please Enter city or state name: ");
-                                        person.SearchPersonInCityOrState();
-                                        flag = true;
+                                        //For Search
+                                        Console.WriteLine("Enter 1 to search by City, 2 to search by State: ");
+                                        int searchOption = int.Parse(Console.ReadLine());
+                                        if (searchOption == 1)
+                                        {
+                                            Console.WriteLine("Enter City  name to search Person: ");
+                                            person.SearchPersonInCityOrState();
+                                        }
+                                        else if (searchOption == 2)
+                                        {
+                                            Console.WriteLine("Enter  State name to search Person: ");
+                                            person.SearchPersonInCityOrState();
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("Invalid option selected");
+                                        }
                                         break;
+
                                     }
                                 case 0:
                                     {
